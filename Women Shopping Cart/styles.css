@@ -1,0 +1,175 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    font-family: Arial, sans-serif;
+}
+
+#category {
+    padding: 5% 6%;
+}
+
+#category .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#product-cards {
+    padding: 5% 10%;
+}
+#cartCount{
+        position: absolute;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+}
+.filter-btns {
+    text-align: center;
+}
+
+.filter-btn {
+    background: none;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 10px 30px;
+    font-size: 16px;
+    color: #d3d3d3;
+    font-weight: 600;
+    letter-spacing: 2px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-btn::after {
+    content: "";
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2px;
+    width: 0;
+    background-color: #555;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-btn:hover {
+    color: #555;
+}
+
+.filter-btn:hover::after {
+    width: 100%;
+}
+
+.active-btn {
+    color: #555;
+}
+
+.active-btn::after {
+    width: 100%;
+}
+
+#cartIcon {
+    color: #620248;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    z-index: 1000; 
+}
+
+#cartIcon i {
+    position: relative;
+}
+
+#cartCount {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.cart-summary {
+    margin-top: 20px;
+}
+
+.cart-subtotal, .cart-discount, .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.cart-subtotal-title, .cart-discount-title, .cart-total-title {
+    font-weight: bold;
+}
+
+.cart-discount-amount {
+    color: red;
+}
+
+.coupon-section input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.coupon-section button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.coupon-section button:hover {
+    background-color: #0056b3;
+}
+
+.btn-purchase {
+    text-align: center;
+    margin: auto;
+    padding: 2%;
+    width: 50%;
+}
+
+.up-icon {
+    color: black;
+    position: fixed;
+    float: right;
+    z-index: 1;
+    left: 95%;
+    top: 85%;
+    font-size: 2rem;
+}
+
+#event-logs {
+    padding: 2% 5%;
+}
+
+#eventLogs {
+    font-family: monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
