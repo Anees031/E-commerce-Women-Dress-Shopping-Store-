@@ -1,7 +1,6 @@
 const config = {
     useEventCapturing: false,
     logPropagationPaths: true
-};
 
 const coupons = {
     SAVE10: 0.1 
