@@ -18,6 +18,8 @@ pipeline {
             echo 'Running tests...'
 
             bat '''
+                set "PATH=C:\\Program Files\\nodejs;%PATH%"
+
                 if not exist "Women Shopping Cart\\index.html" exit /b 1
                 if not exist "Women Shopping Cart\\script.js" exit /b 1
                 if not exist "Women Shopping Cart\\styles.css" exit /b 1
