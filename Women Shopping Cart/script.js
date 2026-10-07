@@ -1,7 +1,7 @@
 const config = {
     useEventCapturing: false,
     logPropagationPaths: true
-hello this is anees
+};
 
 const coupons = {
     SAVE10: 0.1 
