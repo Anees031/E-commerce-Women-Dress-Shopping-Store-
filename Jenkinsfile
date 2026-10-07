@@ -59,7 +59,7 @@ pipeline {
                     bat '''
                         set "PATH=C:\\Users\\Arcana\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
 
-                        echo %DOCKER_PASSWORD% | docker login -u %DOCKER_USERNAME% --password-stdin
+                        <nul set /p="%DOCKER_PASSWORD%" | docker login -u %DOCKER_USERNAME% --password-stdin
 
                         if errorlevel 1 (
                             echo Docker Hub login failed.
@@ -105,4 +105,3 @@ pipeline {
         }
     }
 }
-
