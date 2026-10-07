@@ -13,21 +13,21 @@ pipeline {
             }
         }
 
-    stage('Test') {
-        steps {
-            echo 'Running tests...'
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
 
-            bat '''
-                set "PATH=C:\\Program Files\\nodejs;%PATH%"
+                bat '''
+                    set "PATH=C:\\Program Files\\nodejs;%PATH%"
 
-                if not exist "Women Shopping Cart\\index.html" exit /b 1
-                if not exist "Women Shopping Cart\\script.js" exit /b 1
-                if not exist "Women Shopping Cart\\styles.css" exit /b 1
+                    if not exist "Women Shopping Cart\\index.html" exit /b 1
+                    if not exist "Women Shopping Cart\\script.js" exit /b 1
+                    if not exist "Women Shopping Cart\\styles.css" exit /b 1
 
-                node --check "Women Shopping Cart\\script.js"
-            '''
+                    node --check "Women Shopping Cart\\script.js"
+                '''
+            }
         }
-    }
 
         stage('Build Docker Image') {
             steps {
@@ -37,7 +37,9 @@ pipeline {
                     set "PATH=C:\\Users\\Arcana\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
 
                     docker --version
+
                     docker build -t %DOCKER_IMAGE%:%BUILD_NUMBER% .
+
                     docker tag %DOCKER_IMAGE%:%BUILD_NUMBER% %DOCKER_IMAGE%:latest
                 '''
             }
@@ -58,8 +60,28 @@ pipeline {
                         set "PATH=C:\\Users\\Arcana\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
 
                         echo %DOCKER_PASSWORD% | docker login -u %DOCKER_USERNAME% --password-stdin
+
+                        if errorlevel 1 (
+                            echo Docker Hub login failed.
+                            exit /b 1
+                        )
+
                         docker push %DOCKER_IMAGE%:%BUILD_NUMBER%
+
+                        if errorlevel 1 (
+                            echo Docker image push failed.
+                            docker logout
+                            exit /b 1
+                        )
+
                         docker push %DOCKER_IMAGE%:latest
+
+                        if errorlevel 1 (
+                            echo Docker latest tag push failed.
+                            docker logout
+                            exit /b 1
+                        )
+
                         docker logout
                     '''
                 }
@@ -83,3 +105,4 @@ pipeline {
         }
     }
 }
+
