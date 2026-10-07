@@ -1,0 +1,8 @@
+.git
+.gitignore
+Jenkinsfile
+test.sh
+README.md
+Dockerfile
+node_modules
+npm-debug.log
