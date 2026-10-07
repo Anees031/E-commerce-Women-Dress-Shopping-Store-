@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "YOUR_DOCKERHUB_USERNAME/women-shopping-cart"
+        DOCKER_IMAGE = "anes5301/women-shopping-cart"
     }
 
     stages {
@@ -13,19 +13,19 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
+    stage('Test') {
+        steps {
+            echo 'Running tests...'
 
-                bat '''
-                    if not exist index.html exit /b 1
-                    if not exist script.js exit /b 1
-                    if not exist styles.css exit /b 1
+            bat '''
+                if not exist "Women Shopping Cart\\index.html" exit /b 1
+                if not exist "Women Shopping Cart\\script.js" exit /b 1
+                if not exist "Women Shopping Cart\\styles.css" exit /b 1
 
-                    node --check script.js
-                '''
-            }
+                node --check "Women Shopping Cart\\script.js"
+            '''
         }
+    }
 
         stage('Build Docker Image') {
             steps {
